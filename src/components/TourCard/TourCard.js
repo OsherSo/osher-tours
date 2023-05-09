@@ -5,9 +5,9 @@ import Footer from "./Footer";
 const TourCard = ({ tour }) => {
   return (
     <div className="card">
-      <Header />
-      <Details />
-      <Footer />
+      <Header tour={tour} />
+      <Details tour={tour} />
+      <Footer tour={tour} />
     </div>
   );
 };

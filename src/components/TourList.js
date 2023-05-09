@@ -1,13 +1,22 @@
-import { useLoaderData } from "react-router-dom";
-import TourCard from "./TourCard";
-
-export const toursLoader = async () => {
-  const res = await fetch("http://localhost:8000/api/v1/tours");
-  return res.json();
-};
+import { useEffect, useState } from "react";
+import axios from "axios";
+import TourCard from "./TourCard/TourCard";
 
 const TourList = () => {
-  const tours = useLoaderData().data;
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/v1/tours");
+        setTours(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTours();
+  }, []);
 
   return (
     <main className="main">

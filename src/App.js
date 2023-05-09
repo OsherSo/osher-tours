@@ -10,8 +10,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
-import TourList, { toursLoader } from "./components/TourList";
-import TourPage, { tourLoader } from "./components/TourPage/TourPage";
+import TourList from "./components/TourList";
+import TourPage from "./components/TourPage/TourPage";
 import NotFound from "./components/NotFound";
 
 import "./App.css";
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="register" element={<SignupPage />} />
 
         <Route path="tour">
-          <Route path=":slug" element={<TourPage />} loader={tourLoader} />
+          <Route path=":slug" element={<TourPage />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
