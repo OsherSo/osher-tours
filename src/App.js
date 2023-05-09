@@ -28,7 +28,7 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route index element={<TourList />} loader={toursLoader} />
+        <Route index element={<TourList />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<SignupPage />} />
 
