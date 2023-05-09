@@ -1,13 +1,30 @@
 import { useState } from "react";
+import { useSignIn } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import showAlert from "../../assets/alerts";
 
-const LoginPage = (props) => {
-  const { setIsLoggedIn, setUser } = props;
-
+const LoginPage = () => {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
+
+  const signIn = useSignIn();
+  const navigate = useNavigate();
+
+  const login = (res) => {
+    signIn({
+      token: res.data.token,
+      expiresIn: 3600,
+      tokenType: "Bearer",
+      authState: {
+        name: res.data.data.name,
+        email: res.data.data.email,
+        photo: res.data.data.photo,
+      },
+    });
+    navigate("/");
+  };
 
   const onEmailChange = (event) => {
     setSignInEmail(event.target.value);
@@ -27,11 +44,7 @@ const LoginPage = (props) => {
           password: signInPassword,
         },
       });
-      if (res.data.status === "success") {
-        setIsLoggedIn(true);
-        setUser(res.data.data);
-        showAlert("success", "Logged in successfully!");
-      }
+      login(res);
     } catch (err) {
       showAlert("error", err.response.data.message);
     }
