@@ -1,4 +1,5 @@
 const TourHeader = ({ tour }) => {
+  console.log(tour);
   return (
     <section className="section-header">
       <div className="header__hero">
