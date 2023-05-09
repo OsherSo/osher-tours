@@ -29,7 +29,12 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<TourList />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route
+          path="login"
+          element={
+            <LoginPage setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
+          }
+        />
         <Route path="register" element={<SignupPage />} />
 
         <Route path="tour">
