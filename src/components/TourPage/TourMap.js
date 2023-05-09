@@ -1,47 +1,64 @@
-import React, { useEffect, useRef } from "react";
-import L from "leaflet";
-
-import pinIconUrl from "./pin.png";
+import { useEffect } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const TourMap = ({ locations }) => {
-  const mapRef = useRef(null);
-
   useEffect(() => {
-    const map = L.map(mapRef.current, { zoomControl: false });
+    mapboxgl.accessToken =
+      "pk.eyJ1Ijoib3NoZXJzbyIsImEiOiJjbGg2b2M3NGQwN3doM2dub3ZnNGYzMnZiIn0.eakq8L8UouCrnKfctM5ZaQ";
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    const greenIcon = L.icon({
-      iconUrl: pinIconUrl,
-      iconSize: [32, 40],
-      iconAnchor: [16, 45],
-      popupAnchor: [0, -50],
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy",
+      scrollZoom: false,
     });
 
-    const points = [];
+    const bounds = new mapboxgl.LngLatBounds();
+
     locations.forEach((loc) => {
-      points.push([loc.coordinates[1], loc.coordinates[0]]);
-      L.marker([loc.coordinates[1], loc.coordinates[0]], { icon: greenIcon })
-        .addTo(map)
-        .bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
-          autoClose: false,
-        })
-        .openPopup();
+      // Create marker
+      const el = document.createElement("div");
+      el.className = "marker";
+
+      // Add marker
+      new mapboxgl.Marker({
+        element: el,
+        anchor: "bottom",
+      })
+        .setLngLat(loc.coordinates)
+        .addTo(map);
+
+      // Add popup
+      new mapboxgl.Popup({
+        offset: 30,
+      })
+        .setLngLat(loc.coordinates)
+        .setHTML(`<p>Day ${loc.day}: ${loc.description}</p>`)
+        .addTo(map);
+
+      // Extend map bounds to include current location
+      bounds.extend(loc.coordinates);
     });
 
-    const bounds = L.latLngBounds(points).pad(0.5);
-    map.fitBounds(bounds);
-    map.scrollWheelZoom.disable();
+    map.fitBounds(bounds, {
+      padding: {
+        top: 200,
+        bottom: 150,
+        left: 100,
+        right: 100,
+      },
+    });
 
     return () => {
       map.remove();
     };
   }, [locations]);
 
-  return <section className="section-map" ref={mapRef}></section>;
+  return (
+    <section className="section-map">
+      <div id="map" />
+    </section>
+  );
 };
 
 export default TourMap;

@@ -1,7 +1,5 @@
-import React from "react";
-// import { Link } from "react-router-dom";
-
-const Header = ({ isSignedIn, onRouteChange, user }) => {
+const Header = (props) => {
+  const { isLoggedIn, user } = props;
   return (
     <header className="header">
       <nav className="nav nav--tours">
@@ -13,14 +11,9 @@ const Header = ({ isSignedIn, onRouteChange, user }) => {
         <img src="/img/logo-white.png" alt="Natours logo" />
       </div>
       <nav className="nav nav--user">
-        {isSignedIn ? (
+        {isLoggedIn ? (
           <>
-            <p
-              onClick={() => onRouteChange("signout")}
-              className="nav__el nav__el--logout"
-            >
-              Sign Out
-            </p>
+            <p className="nav__el nav__el--logout">Sign Out</p>
             <a className="nav__el" href="/me">
               <img
                 className="nav__user-img"

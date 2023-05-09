@@ -2,6 +2,10 @@
   --section-rotate: 9vw;
 }
 
+#map {
+  z-index: 1;
+}
+
 ::-moz-selection {
   background-color: #55c57a;
   color: #fff;

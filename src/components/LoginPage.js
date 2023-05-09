@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 class LoginPage extends Component {
   constructor(props) {
@@ -40,6 +43,12 @@ class LoginPage extends Component {
         },
       });
       if (res.data.status === "success") {
+        const cookieOptions = {
+          expires: new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+          ),
+        };
+        cookies.set("jwt", res.data.token, cookieOptions);
         this.showAlert("success", "Logged in successfully!");
       }
     } catch (err) {

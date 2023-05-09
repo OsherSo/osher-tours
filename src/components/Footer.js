@@ -1,6 +1,4 @@
-import React from "react";
-
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__logo">
@@ -28,6 +26,6 @@ function Footer() {
       </p>
     </footer>
   );
-}
+};
 
 export default Footer;
