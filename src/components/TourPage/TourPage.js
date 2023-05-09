@@ -6,6 +6,7 @@ import TourHeader from "./TourHeader";
 import TourDescription from "./TourDescription";
 import TourPictures from "./TourPictures";
 import TourMap from "./TourMap";
+import TourReviews from "./TourReviews";
 import TourFooter from "./TourFooter";
 
 const TourPage = () => {
@@ -32,6 +33,7 @@ const TourPage = () => {
       {tour && <TourDescription tour={tour} />}
       {tour && <TourPictures tour={tour} />}
       {tour && <TourMap tour={tour} />}
+      {tour && <TourReviews tour={tour} />}
       {tour && <TourFooter tour={tour} />}
     </div>
   );
