@@ -4,7 +4,6 @@ import TourHeader from "./TourHeader";
 import TourDescription from "./TourDescription";
 import TourPictures from "./TourPictures";
 import TourFooter from "./TourFooter";
-import TourMap from "./TourMap";
 
 export const tourLoader = async ({ params }) => {
   const { slug } = params;
@@ -20,7 +19,6 @@ const TourPage = () => {
       <TourHeader tour={tour} />
       <TourDescription tour={tour} />
       <TourPictures tour={tour} />
-      <TourMap locations={tour.locations} />
       <TourFooter tour={tour} />
     </div>
   );
