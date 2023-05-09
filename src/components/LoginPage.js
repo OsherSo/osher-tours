@@ -37,9 +37,9 @@ const LoginPage = (props) => {
         },
       });
       if (res.data.status === "success") {
-        showAlert("success", "Logged in successfully!");
         setIsLoggedIn(true);
         setUser(res.data.data);
+        showAlert("success", "Logged in successfully!");
       }
     } catch (err) {
       showAlert("error", err.response.data.message);

@@ -35,7 +35,12 @@ const App = () => {
             <LoginPage setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
           }
         />
-        <Route path="register" element={<SignupPage />} />
+        <Route
+          path="register"
+          element={
+            <SignupPage setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
+          }
+        />
 
         <Route path="tour">
           <Route path=":slug" element={<TourPage />} />
