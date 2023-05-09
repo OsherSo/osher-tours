@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import showAlert from "../assets/alerts";
+import showAlert from "../../assets/alerts";
 
 const SignupPage = (props) => {
   const { setIsLoggedIn, setUser } = props;

@@ -6,13 +6,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import LoginPage from "./components/LoginPage";
-import SignupPage from "./components/SignupPage";
-import TourList from "./components/TourList";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import LoginPage from "./components/authentication/LoginPage";
+import SignupPage from "./components/authentication/SignupPage";
+import Overview from "./components/Overview";
 import TourPage from "./components/TourPage/TourPage";
-import NotFound from "./components/NotFound";
+import NotFound from "./components/authentication/NotFound";
 
 import "./App.css";
 
@@ -28,7 +28,7 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route index element={<TourList />} />
+        <Route index element={<Overview />} />
         <Route
           path="login"
           element={

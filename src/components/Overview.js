@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import TourCard from "./TourCard/TourCard";
 
-const TourList = () => {
+const Overview = () => {
   const [tours, setTours] = useState([]);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const TourList = () => {
   );
 };
 
-export default TourList;
+export default Overview;
