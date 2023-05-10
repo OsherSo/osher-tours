@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider, RequireAuth } from "react-auth-kit";
 
-import Header from "./components/layout/Header";
+import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer";
 import LoginPage from "./components/authentication/LoginPage";
 import SignupPage from "./components/authentication/SignupPage";

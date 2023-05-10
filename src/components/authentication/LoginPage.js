@@ -12,6 +12,14 @@ const LoginPage = () => {
   const signIn = useSignIn();
   const navigate = useNavigate();
 
+  const onEmailChange = (event) => {
+    setSignInEmail(event.target.value);
+  };
+
+  const onPasswordChange = (event) => {
+    setSignInPassword(event.target.value);
+  };
+
   const login = (res) => {
     signIn({
       token: res.data.token,
@@ -24,14 +32,6 @@ const LoginPage = () => {
       },
     });
     navigate("/");
-  };
-
-  const onEmailChange = (event) => {
-    setSignInEmail(event.target.value);
-  };
-
-  const onPasswordChange = (event) => {
-    setSignInPassword(event.target.value);
   };
 
   const onSubmitSignIn = async () => {
