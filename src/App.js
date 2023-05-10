@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import { RequireAuth } from "react-auth-kit";
+import { AuthProvider, RequireAuth } from "react-auth-kit";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -39,11 +39,16 @@ const App = () => {
   );
 
   return (
-    <div className="App">
+    <AuthProvider
+      authType={"cookie"}
+      authName={"_auth"}
+      cookieDomain={window.location.hostname}
+      cookieSecure={window.location.protocol === "https:"}
+    >
       <Header />
       <RouterProvider router={router} />
       <Footer />
-    </div>
+    </AuthProvider>
   );
 };
 
