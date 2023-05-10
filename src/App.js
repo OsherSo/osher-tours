@@ -14,8 +14,6 @@ import Overview from "./components/Overview";
 import TourPage from "./components/TourPage/TourPage";
 import NotFound from "./components/authentication/NotFound";
 
-import "./App.css";
-
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
